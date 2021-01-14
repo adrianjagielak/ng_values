@@ -6,7 +6,7 @@ class Value {
   Value({
     @required this.id,
     @required this.text,
-    @required this.canBeDeleted,
+    this.canBeDeleted = true,
   });
 
   /// Value id

@@ -17,14 +17,12 @@ class ValuesProvider extends ChangeNotifier {
   /// Adds value to storage
   void add({
     @required String text,
-    bool canBeDeleted = false,
   }) {
     int id = nextId;
 
     _values.add(Value(
       id: id,
       text: text,
-      canBeDeleted: canBeDeleted,
     ));
 
     notifyListeners();
