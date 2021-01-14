@@ -62,10 +62,8 @@ class MyApp extends StatelessWidget {
 
 /// Initial loading of all values from REST api and saved in device storage
 Future _loadValues(BuildContext context) async {
-  ValuesProvider valuesProvider = Provider.of(context, listen: false)
-    ..clear()
-    // Load Seven Core Values From Api
-    ..setUp(await getCoreValues());
+  // Load Seven Core Values From Api
+  List<Value> coreValues = await getCoreValues();
 
   // Load saved custom values
 
@@ -74,22 +72,24 @@ Future _loadValues(BuildContext context) async {
   List<String> savedJsonValues =
       preferences.getStringList('custom_values') ?? [];
 
-  List<Value> savedCustomValues =
+  Iterable<Value> savedCustomValues =
       savedJsonValues.map((e) => Value.fromJson(jsonDecode(e)));
 
-  valuesProvider.setUp(savedCustomValues);
+  Provider.of<ValuesProvider>(context, listen: false)
+    ..clear()
+    ..setUp(coreValues)
+    ..setUp(savedCustomValues);
 }
 
 /// Initial loading of saved favorites from device storage
 Future _loadSavedFavorites(BuildContext context) async {
-  FavoritesProvider favoritesProvider = Provider.of(context, listen: false)
-    ..clear();
-
   SharedPreferences preferences = await SharedPreferences.getInstance();
 
   // SharedPreferences only allow to save list of string so we will need to
   // parse them to ints
   List<String> ids = preferences.getStringList('favorites') ?? [];
 
-  favoritesProvider.setUp(ids.map(int.parse));
+  Provider.of<FavoritesProvider>(context, listen: false)
+    ..clear()
+    ..setUp(ids.map(int.parse));
 }
