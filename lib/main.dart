@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'screens/home.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: Container(),
+      home: Home(),
     );
   }
 }
