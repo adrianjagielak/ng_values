@@ -63,6 +63,7 @@ class MyApp extends StatelessWidget {
 /// Initial loading of all values from REST api and saved in device storage
 Future _loadValues(BuildContext context) async {
   ValuesProvider valuesProvider = Provider.of(context, listen: false)
+    ..clear()
     // Load Seven Core Values From Api
     ..setUp(await getCoreValues());
 
@@ -81,7 +82,8 @@ Future _loadValues(BuildContext context) async {
 
 /// Initial loading of saved favorites from device storage
 Future _loadSavedFavorites(BuildContext context) async {
-  FavoritesProvider favoritesProvider = Provider.of(context, listen: false);
+  FavoritesProvider favoritesProvider = Provider.of(context, listen: false)
+    ..clear();
 
   SharedPreferences preferences = await SharedPreferences.getInstance();
 

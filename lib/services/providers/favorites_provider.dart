@@ -11,6 +11,11 @@ class FavoritesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Clear all the favorites before loading new from device storage
+  void clear() {
+    _favoritesIds = [];
+  }
+
   /// Load initial values from device storage
   void setUp(Iterable<int> initialValues) =>
       _favoritesIds.addAll(initialValues);

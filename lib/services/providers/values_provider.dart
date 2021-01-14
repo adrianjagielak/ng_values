@@ -4,13 +4,18 @@ import '../../models/value.dart';
 
 /// This provider is used to hold all available values.
 class ValuesProvider extends ChangeNotifier {
-  final List<Value> _values = [];
+  List<Value> _values = [];
 
   List<Value> get values => _values;
 
   /// Get value by its id
   Value valueById(int id) => _values.firstWhere((e) => e.id == id);
-  
+
+  /// Clear all the values before loading new from device storage
+  void clear() {
+    _values = [];
+  }
+
   /// Load initial values from api
   void setUp(Iterable<Value> initialValues) => _values.addAll(initialValues);
 
