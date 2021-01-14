@@ -34,4 +34,7 @@ ThemeData get darkTheme => ThemeData(
       cardTheme: CardTheme(
         clipBehavior: Clip.antiAlias,
       ),
+      appBarTheme: AppBarTheme(
+        color: Colors.grey[850],
+      ),
     );
