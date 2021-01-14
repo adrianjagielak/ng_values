@@ -13,8 +13,7 @@ class Value {
     this.canBeDeleted = true,
   });
 
-  factory Value.fromJson(Map<String, dynamic> json) =>
-      _$ValueFromJson(json);
+  factory Value.fromJson(Map<String, dynamic> json) => _$ValueFromJson(json);
 
   Map<String, dynamic> toJson() => _$ValueToJson(this);
 
