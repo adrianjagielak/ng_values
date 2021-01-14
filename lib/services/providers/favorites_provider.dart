@@ -12,7 +12,8 @@ class FavoritesProvider extends ChangeNotifier {
   }
 
   /// Load initial values from device storage
-  void setUp(List<int> initialValues) => _favoritesIds.addAll(initialValues);
+  void setUp(Iterable<int> initialValues) =>
+      _favoritesIds.addAll(initialValues);
 
   /// Adds value id to favorites
   void add(int newFavorite) {

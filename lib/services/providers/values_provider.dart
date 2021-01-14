@@ -12,7 +12,7 @@ class ValuesProvider extends ChangeNotifier {
   Value valueById(int id) => _values.firstWhere((e) => e.id == id);
   
   /// Load initial values from api
-  void setUp(List<Value> initialValues) => _values.addAll(initialValues);
+  void setUp(Iterable<Value> initialValues) => _values.addAll(initialValues);
 
   /// Adds value to storage
   void add({
