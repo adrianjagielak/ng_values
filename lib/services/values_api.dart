@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 import '../models/value.dart';
-import 'providers/values_provider.dart';
 
 const String _baseUrl = 'www.netguru.com';
 
