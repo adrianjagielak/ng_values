@@ -34,7 +34,7 @@ class DatabaseListItem extends StatelessWidget {
             IconButton(
               tooltip: 'Add to favorites',
               icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
-              onPressed: () => isFavorite
+              onPressed: () async => isFavorite
                   ? favoritesProvider.remove(value.id)
                   : favoritesProvider.add(value.id),
             ),
@@ -60,9 +60,11 @@ class DatabaseListItem extends StatelessWidget {
                         ),
                         FlatButton(
                           textColor: Theme.of(context).accentColor,
-                          onPressed: () {
-                            Provider.of<ValuesProvider>(context, listen: false)
-                                .remove(value.id);
+                          onPressed: () async {
+                            await Provider.of<ValuesProvider>(
+                              context,
+                              listen: false,
+                            ).remove(value.id);
 
                             Navigator.of(context).pop();
                           },

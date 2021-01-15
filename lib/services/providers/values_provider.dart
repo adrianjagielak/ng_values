@@ -23,9 +23,9 @@ class ValuesProvider extends ChangeNotifier {
   void setUp(Iterable<Value> initialValues) => _values.addAll(initialValues);
 
   /// Adds value to storage
-  void add({
+  Future add({
     @required String text,
-  }) {
+  }) async {
     int id = nextId;
 
     _values.add(Value(
@@ -37,7 +37,7 @@ class ValuesProvider extends ChangeNotifier {
   }
 
   /// Remove value from storage
-  void remove(int id) {
+  Future remove(int id) async {
     _values.removeWhere((e) => e.id == id);
 
     notifyListeners();

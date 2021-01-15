@@ -51,9 +51,11 @@ class LovedListItem extends StatelessWidget {
                       ),
                       FlatButton(
                         textColor: Theme.of(context).accentColor,
-                        onPressed: () {
-                          Provider.of<FavoritesProvider>(context, listen: false)
-                              .remove(value.id);
+                        onPressed: () async {
+                          await Provider.of<FavoritesProvider>(
+                            context,
+                            listen: false,
+                          ).remove(value.id);
 
                           Navigator.of(context).pop();
                         },

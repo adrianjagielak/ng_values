@@ -17,9 +17,9 @@ class NewValueDialog extends StatefulWidget {
 class _NewValueDialogState extends State<NewValueDialog> {
   String _text;
 
-  void createNewValue(String text) {
+  Future createNewValue(String text) async {
     if (text != null && text.isNotEmpty) {
-      Provider.of<ValuesProvider>(context, listen: false).add(text: text);
+      await Provider.of<ValuesProvider>(context, listen: false).add(text: text);
 
       widget.onCreateNew();
     }
@@ -44,7 +44,7 @@ class _NewValueDialogState extends State<NewValueDialog> {
         ),
         FlatButton(
           textColor: Theme.of(context).accentColor,
-          onPressed: () => createNewValue(_text),
+          onPressed: () async => createNewValue(_text),
           child: Text('OK'),
         ),
       ],

@@ -24,7 +24,7 @@ class FavoritesProvider extends ChangeNotifier {
       _favoritesIds.addAll(initialValues);
 
   /// Adds value id to favorites
-  void add(int newFavorite) {
+  Future add(int newFavorite) async {
     if (!_favoritesIds.contains(newFavorite)) {
       _favoritesIds.add(newFavorite);
       notifyListeners();
@@ -32,7 +32,7 @@ class FavoritesProvider extends ChangeNotifier {
   }
 
   /// Remove value id from favorites
-  void remove(int favorite) {
+  Future remove(int favorite) async {
     if (_favoritesIds.contains(favorite)) {
       _favoritesIds.remove(favorite);
       notifyListeners();
