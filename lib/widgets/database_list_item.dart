@@ -29,36 +29,34 @@ class DatabaseListItem extends StatelessWidget {
             if (value.canBeDeleted)
               IconButton(
                 icon: Icon(Icons.clear),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    barrierDismissible: true,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text('Warning!'),
-                        content: Text(
-                          'Are you sure you want to erase this precious quote '
-                          'from history?',
+                onPressed: () => showDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Warning!'),
+                      content: Text(
+                        'Are you sure you want to erase this precious quote '
+                        'from history?',
+                      ),
+                      actions: [
+                        FlatButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: Text('CANCEL'),
                         ),
-                        actions: [
-                          FlatButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: Text('CANCEL'),
-                          ),
-                          FlatButton(
-                            onPressed: () {
-                              Provider.of<ValuesProvider>(context,
-                                      listen: false)
-                                  .remove(value.id);
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('OK'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
+                        FlatButton(
+                          onPressed: () {
+                            Provider.of<ValuesProvider>(context, listen: false)
+                                .remove(value.id);
+
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               )
             else
               SizedBox(height: 48),
