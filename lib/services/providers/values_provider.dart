@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/value.dart';
 
@@ -32,6 +36,8 @@ class ValuesProvider extends ChangeNotifier {
       text: text,
     ));
 
+    await _saveToStorage();
+
     notifyListeners();
   }
 
@@ -39,7 +45,24 @@ class ValuesProvider extends ChangeNotifier {
   Future remove(int id) async {
     _values.removeWhere((e) => e.id == id);
 
+    await _saveToStorage();
+
     notifyListeners();
+  }
+
+  /// Saves non-core values serialized as JSON to device storage.
+  Future _saveToStorage() async {
+    // Do not save to device storage while running unit tests
+    if (Platform.environment.containsKey('FLUTTER_TEST')) {
+      return;
+    }
+
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    await preferences.setStringList(
+      'favorites',
+      _values.where((e) => e.canBeDeleted).map((e) => jsonEncode(e.toJson())),
+    );
   }
 }
 

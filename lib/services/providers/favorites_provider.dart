@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// This provider is used to hold user favorite values.
 class FavoritesProvider extends ChangeNotifier {
@@ -27,6 +30,9 @@ class FavoritesProvider extends ChangeNotifier {
   Future add(int newFavorite) async {
     if (!_favoritesIds.contains(newFavorite)) {
       _favoritesIds.add(newFavorite);
+
+      await _saveToStorage();
+
       notifyListeners();
     }
   }
@@ -35,7 +41,25 @@ class FavoritesProvider extends ChangeNotifier {
   Future remove(int favorite) async {
     if (_favoritesIds.contains(favorite)) {
       _favoritesIds.remove(favorite);
+
+      await _saveToStorage();
+
       notifyListeners();
     }
+  }
+
+  /// Saves favorites ids to device storage.
+  Future _saveToStorage() async {
+    // Do not save to device storage while running unit tests
+    if (Platform.environment.containsKey('FLUTTER_TEST')) {
+      return;
+    }
+
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    await preferences.setStringList(
+      'favorites',
+      _favoritesIds.map((e) => '$e'),
+    );
   }
 }
