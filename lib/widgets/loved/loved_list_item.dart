@@ -16,6 +16,10 @@ class LovedListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     ValuesProvider valuesProvider = Provider.of(context);
 
+    if (!valuesProvider.contains(id)) {
+      return SizedBox();
+    }
+
     Value value = valuesProvider.valueById(id);
 
     return Card(

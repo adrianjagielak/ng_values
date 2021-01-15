@@ -17,6 +17,10 @@ class ValuesProvider extends ChangeNotifier {
 
   List<Value> get values => _values;
 
+  // Returns true if the values collection contains an element with id equal
+  // to [id].
+  bool contains(String id) => _values.where((e) => e.id == id).isNotEmpty;
+
   /// Get value by its id
   Value valueById(String id) => _values.firstWhere((e) => e.id == id);
 
