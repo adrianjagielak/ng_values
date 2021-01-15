@@ -54,10 +54,12 @@ class DatabaseListItem extends StatelessWidget {
                       ),
                       actions: [
                         FlatButton(
+                          textColor: Theme.of(context).accentColor,
                           onPressed: () => Navigator.of(context).pop(),
                           child: Text('CANCEL'),
                         ),
                         FlatButton(
+                          textColor: Theme.of(context).accentColor,
                           onPressed: () {
                             Provider.of<ValuesProvider>(context, listen: false)
                                 .remove(value.id);

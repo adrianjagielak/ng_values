@@ -38,10 +38,12 @@ class _NewValueDialogState extends State<NewValueDialog> {
       ),
       actions: [
         FlatButton(
+          textColor: Theme.of(context).accentColor,
           onPressed: () => Navigator.of(context).pop(),
           child: Text('CANCEL'),
         ),
         FlatButton(
+          textColor: Theme.of(context).accentColor,
           onPressed: () => createNewValue(_text),
           child: Text('OK'),
         ),
