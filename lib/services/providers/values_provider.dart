@@ -4,8 +4,7 @@ import '../../models/value.dart';
 
 /// This provider is used to hold all available values.
 class ValuesProvider extends ChangeNotifier {
-  ValuesProvider([List<Value> mockupValues])
-      : _values = mockupValues ?? [];
+  ValuesProvider([List<Value> mockupValues]) : _values = mockupValues ?? [];
 
   List<Value> _values;
 
