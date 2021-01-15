@@ -12,9 +12,9 @@ void main() {
   group('ValuesProvider', () {
     testWidgets('load values from device storage', (WidgetTester tester) async {
       List<Value> customValues = [
-        Value(id: 10, text: 'Value 10!'),
-        Value(id: 12, text: 'Value 12?'),
-        Value(id: 15, text: 'Value 15¿'),
+        Value(id: '10', text: 'Value 10!'),
+        Value(id: '12', text: 'Value 12?'),
+        Value(id: '15', text: 'Value 15¿'),
       ];
 
       SharedPreferences.setMockInitialValues({

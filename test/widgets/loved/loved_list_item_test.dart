@@ -9,10 +9,10 @@ void main() {
     testWidgets('correctly displays value for given favorite id',
         (WidgetTester tester) async {
       await tester.pumpWidget(MockupApp(
-        values: [Value(id: 1138, text: 'Star Wars!')],
-        favorites: [1138],
+        values: [Value(id: '1138', text: 'Star Wars!')],
+        favoritesIds: ['1138'],
         child: LovedListItem(
-          id: 1138,
+          id: '1138',
         ),
       ));
 

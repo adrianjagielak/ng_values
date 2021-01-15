@@ -18,7 +18,7 @@ class Value {
   Map<String, dynamic> toJson() => _$ValueToJson(this);
 
   /// Value id
-  final int id;
+  final String id;
 
   /// Value text
   final String text;

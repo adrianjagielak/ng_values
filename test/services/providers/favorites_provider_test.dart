@@ -37,7 +37,7 @@ void main() {
           key.currentContext,
           listen: false,
         ).favoritesIds,
-        equals([0, 15, 42]),
+        equals(['0', '15', '42']),
       );
     });
   });

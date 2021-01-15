@@ -10,7 +10,7 @@ class LovedListItem extends StatelessWidget {
     @required this.id,
   });
 
-  final int id;
+  final String id;
 
   @override
   Widget build(BuildContext context) {

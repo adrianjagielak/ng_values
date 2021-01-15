@@ -17,7 +17,7 @@ class ValuesProvider extends ChangeNotifier {
   List<Value> get values => _values;
 
   /// Get value by its id
-  Value valueById(int id) => _values.firstWhere((e) => e.id == id);
+  Value valueById(String id) => _values.firstWhere((e) => e.id == id);
 
   /// Clear all the values before loading new from device storage
   void clear() {
@@ -31,7 +31,7 @@ class ValuesProvider extends ChangeNotifier {
   Future add({
     @required String text,
   }) async {
-    int id = nextId;
+    String id = nextId;
 
     _values.add(Value(
       id: id,
@@ -43,8 +43,9 @@ class ValuesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Remove value from storage
-  Future remove(int id) async {
+  /// Remove value from storage. Corresponding favorite if exists should be
+  /// removed manually.
+  Future remove(String id) async {
     _values.removeWhere((e) => e.id == id);
 
     await _saveToStorage();
@@ -69,7 +70,7 @@ class ValuesProvider extends ChangeNotifier {
 }
 
 /// Unique incremental id generator
-int get nextId => _ids++;
+String get nextId => '${_ids++}';
 
 /// Global number used to generate ids
 int _ids = 0;

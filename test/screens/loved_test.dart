@@ -9,8 +9,8 @@ void main() {
   group('Loved screen', () {
     testWidgets('remove value from favorites', (WidgetTester tester) async {
       await tester.pumpWidget(MockupApp(
-        values: [Value(id: 9, text: 'test quote 9!')],
-        favorites: [9],
+        values: [Value(id: '9', text: 'test quote 9!')],
+        favoritesIds: ['9'],
         child: Loved(),
       ));
 

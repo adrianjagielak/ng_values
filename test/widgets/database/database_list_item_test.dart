@@ -11,7 +11,7 @@ void main() {
       await tester.pumpWidget(MockupApp(
         child: DatabaseListItem(
           value: Value(
-            id: 0,
+            id: '0',
             text: 'test value 1',
             canBeDeleted: false,
           ),
@@ -32,12 +32,12 @@ void main() {
     testWidgets('correctly displays given value for non-core favorite value',
         (WidgetTester tester) async {
       await tester.pumpWidget(MockupApp(
-        favorites: [
-          15,
+        favoritesIds: [
+          '15',
         ],
         child: DatabaseListItem(
           value: Value(
-            id: 15,
+            id: '15',
             text: 'test value 15',
           ),
         ),

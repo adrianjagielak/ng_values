@@ -9,12 +9,12 @@ void main() {
 
   setUp(() {
     valueFromJson = Value.fromJson(
-        jsonDecode('{"id":0,"text":"qwerty123","canBeDeleted":false}'));
+        jsonDecode('{"id":"0","text":"qwerty123","canBeDeleted":false}'));
   });
 
   group('Value.fromJson', () {
     test('correctly parses JSON input', () {
-      expect(valueFromJson.id, equals(0));
+      expect(valueFromJson.id, equals('0'));
       expect(valueFromJson.text, equals('qwerty123'));
       expect(valueFromJson.canBeDeleted, equals(false));
     });

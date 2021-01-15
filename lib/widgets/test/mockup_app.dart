@@ -11,12 +11,12 @@ import '../../services/providers/values_provider.dart';
 class MockupApp extends StatelessWidget {
   MockupApp({
     this.values,
-    this.favorites,
+    this.favoritesIds,
     @required this.child,
   });
 
   final List<Value> values;
-  final List<int> favorites;
+  final List<String> favoritesIds;
   final Widget child;
 
   @override
@@ -24,7 +24,7 @@ class MockupApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ValuesProvider(values)),
-        ChangeNotifierProvider(create: (_) => FavoritesProvider(favorites)),
+        ChangeNotifierProvider(create: (_) => FavoritesProvider(favoritesIds)),
       ],
       builder: (_, __) => MaterialApp(home: child),
     );

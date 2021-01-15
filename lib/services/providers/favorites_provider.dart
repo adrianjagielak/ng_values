@@ -6,14 +6,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// This provider is used to hold user favorite values.
 class FavoritesProvider extends ChangeNotifier {
-  FavoritesProvider([List<int> mockupFavorites])
+  FavoritesProvider([List<String> mockupFavorites])
       : _favoritesIds = mockupFavorites ?? [];
 
-  List<int> _favoritesIds;
+  List<String> _favoritesIds;
 
-  List<int> get favoritesIds => _favoritesIds;
+  List<String> get favoritesIds => _favoritesIds;
 
-  set favoritesIds(List<int> ids) {
+  set favoritesIds(List<String> ids) {
     _favoritesIds = ids;
     notifyListeners();
   }
@@ -24,11 +24,11 @@ class FavoritesProvider extends ChangeNotifier {
   }
 
   /// Load initial values from device storage
-  void setUp(Iterable<int> initialValues) =>
+  void setUp(Iterable<String> initialValues) =>
       _favoritesIds.addAll(initialValues);
 
   /// Adds value id to favorites
-  Future add(int newFavorite) async {
+  Future add(String newFavorite) async {
     if (!_favoritesIds.contains(newFavorite)) {
       _favoritesIds.add(newFavorite);
 
@@ -39,7 +39,7 @@ class FavoritesProvider extends ChangeNotifier {
   }
 
   /// Remove value id from favorites
-  Future remove(int favorite) async {
+  Future remove(String favorite) async {
     if (_favoritesIds.contains(favorite)) {
       _favoritesIds.remove(favorite);
 
@@ -58,10 +58,7 @@ class FavoritesProvider extends ChangeNotifier {
 
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    await preferences.setStringList(
-      'favorites',
-      _favoritesIds.map((e) => '$e'),
-    );
+    await preferences.setStringList('favorites', _favoritesIds);
   }
 }
 
@@ -75,5 +72,5 @@ Future loadSavedFavorites(BuildContext context) async {
 
   Provider.of<FavoritesProvider>(context, listen: false)
     ..clear()
-    ..setUp(ids.map(int.parse));
+    ..setUp(ids);
 }

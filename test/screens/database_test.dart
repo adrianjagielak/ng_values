@@ -11,7 +11,7 @@ void main() {
       await tester.pumpWidget(MockupApp(
         values: [
           Value(
-            id: 0,
+            id: '0',
             text: 'test value',
           )
         ],

@@ -8,7 +8,7 @@ part of 'value.dart';
 
 Value _$ValueFromJson(Map<String, dynamic> json) {
   return Value(
-    id: json['id'] as int,
+    id: json['id'] as String,
     text: json['text'] as String,
     canBeDeleted: json['canBeDeleted'] as bool,
   );
