@@ -32,6 +32,7 @@ class DatabaseListItem extends StatelessWidget {
               ),
             ),
             IconButton(
+              tooltip: 'Add to favorites',
               icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
               onPressed: () => isFavorite
                   ? favoritesProvider.remove(value.id)
@@ -39,6 +40,7 @@ class DatabaseListItem extends StatelessWidget {
             ),
             if (value.canBeDeleted)
               IconButton(
+                tooltip: 'Remove from database',
                 icon: Icon(Icons.clear),
                 onPressed: () => showDialog(
                   context: context,
