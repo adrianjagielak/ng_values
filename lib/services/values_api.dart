@@ -32,7 +32,8 @@ Future<List<Value>> getCoreValues() async {
         .querySelectorAll('ol span')
         .map(
           (e) => Value(
-            id: nextId,
+            // Since we are using pseudo-api id can be the same as text
+            id: e.text,
             text: e.text,
             canBeDeleted: false,
           ),
@@ -53,7 +54,8 @@ Future<List<Value>> getCoreValues() async {
       'Recognize excellence and engagement',
     ]
         .map((e) => Value(
-              id: nextId,
+              // Since we are using pseudo-api id can be the same as text
+              id: e,
               text: e,
               canBeDeleted: false,
             ))
