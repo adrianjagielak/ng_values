@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 /// This provider is used to hold user favorite values.
 class FavoritesProvider extends ChangeNotifier {
-  List<int> _favoritesIds = [];
+  FavoritesProvider([List<int> mockupFavorites])
+      : _favoritesIds = mockupFavorites ?? [];
+
+  List<int> _favoritesIds;
 
   List<int> get favoritesIds => _favoritesIds;
 
