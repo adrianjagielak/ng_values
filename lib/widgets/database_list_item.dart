@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/value.dart';
+import '../services/providers/favorites_provider.dart';
 import '../services/providers/values_provider.dart';
 
 class DatabaseListItem extends StatelessWidget {
@@ -13,6 +14,10 @@ class DatabaseListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FavoritesProvider favoritesProvider = Provider.of(context);
+
+    bool isFavorite = favoritesProvider.favoritesIds.contains(value.id);
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -25,6 +30,12 @@ class DatabaseListItem extends StatelessWidget {
                   value.text,
                 ),
               ),
+            ),
+            IconButton(
+              icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
+              onPressed: () => isFavorite
+                  ? favoritesProvider.remove(value.id)
+                  : favoritesProvider.add(value.id),
             ),
             if (value.canBeDeleted)
               IconButton(
