@@ -64,8 +64,11 @@ class ValuesProvider extends ChangeNotifier {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     await preferences.setStringList(
-      'favorites',
-      _values.where((e) => e.canBeDeleted).map((e) => jsonEncode(e.toJson())),
+      'custom_values',
+      _values
+          .where((e) => e.canBeDeleted)
+          .map((e) => jsonEncode(e.toJson()))
+          .toList(),
     );
   }
 }
