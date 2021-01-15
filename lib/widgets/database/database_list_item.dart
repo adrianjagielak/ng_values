@@ -61,6 +61,11 @@ class DatabaseListItem extends StatelessWidget {
                         FlatButton(
                           textColor: Theme.of(context).accentColor,
                           onPressed: () async {
+                            await Provider.of<FavoritesProvider>(
+                              context,
+                              listen: false,
+                            ).remove(value.id);
+
                             await Provider.of<ValuesProvider>(
                               context,
                               listen: false,
