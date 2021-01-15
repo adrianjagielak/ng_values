@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../models/value.dart';
 import '../values_api.dart';
@@ -69,11 +70,11 @@ class ValuesProvider extends ChangeNotifier {
   }
 }
 
-/// Unique incremental id generator
-String get nextId => '${_ids++}';
+/// Unique id generator
+String get nextId => _uuid.v1();
 
-/// Global number used to generate ids
-int _ids = 0;
+/// Uuid instance used to generate ids
+Uuid _uuid = Uuid();
 
 /// Initial loading of all values from REST api and saved in device storage
 ///
