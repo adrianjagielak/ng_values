@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../services/providers/values_provider.dart';
+import '../../services/providers/values_provider.dart';
 
 class NewValueDialog extends StatefulWidget {
   NewValueDialog({

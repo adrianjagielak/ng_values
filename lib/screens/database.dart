@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../services/providers/values_provider.dart';
-import '../widgets/database_list_item.dart';
-import '../widgets/new_value_dialog.dart';
+import '../widgets/database/database_list_item.dart';
+import '../widgets/database/new_value_dialog.dart';
 
 class Database extends StatefulWidget {
   @override

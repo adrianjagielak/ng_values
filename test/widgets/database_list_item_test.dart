@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ng_values/models/value.dart';
-import 'package:ng_values/widgets/database_list_item.dart';
+import 'package:ng_values/widgets/database/database_list_item.dart';
 import 'package:ng_values/widgets/test/mockup_app.dart';
 
 void main() {
