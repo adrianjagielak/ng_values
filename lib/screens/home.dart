@@ -44,7 +44,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[_index],
+      body: AnimatedSwitcher(
+        duration: Duration(milliseconds: 300),
+        child: pages[_index],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
         onTap: (i) => setState(() => _index = i),
