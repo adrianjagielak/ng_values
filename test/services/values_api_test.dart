@@ -67,7 +67,7 @@ void main() {
       expect(coreValues[6].id, equals(6));
 
       // All of values from API should have canBeDeleted == false
-      expect(coreValues.where((e) => e.canBeDeleted == true).isEmpty, isTrue);
+      expect(coreValues.where((e) => e.canBeDeleted == true), isEmpty);
     });
   });
 }
