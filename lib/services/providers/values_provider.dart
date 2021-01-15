@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/value.dart';
+import '../values_api.dart';
 
 /// This provider is used to hold all available values.
 class ValuesProvider extends ChangeNotifier {
@@ -71,3 +73,26 @@ int get nextId => _ids++;
 
 /// Global number used to generate ids
 int _ids = 0;
+
+/// Initial loading of all values from REST api and saved in device storage
+///
+/// [offline] is used mainly for unit testing.
+Future loadValues(BuildContext context, {bool offline = false}) async {
+  // Load Seven Core Values From Api
+  List<Value> coreValues = offline ? [] : await getCoreValues();
+
+  // Load saved custom values
+
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+
+  List<String> savedJsonValues =
+      preferences.getStringList('custom_values') ?? [];
+
+  Iterable<Value> savedCustomValues =
+      savedJsonValues.map((e) => Value.fromJson(jsonDecode(e)));
+
+  Provider.of<ValuesProvider>(context, listen: false)
+    ..clear()
+    ..setUp(coreValues)
+    ..setUp(savedCustomValues);
+}

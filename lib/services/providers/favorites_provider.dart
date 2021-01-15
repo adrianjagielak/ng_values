@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// This provider is used to hold user favorite values.
@@ -62,4 +63,17 @@ class FavoritesProvider extends ChangeNotifier {
       _favoritesIds.map((e) => '$e'),
     );
   }
+}
+
+/// Initial loading of saved favorites from device storage
+Future loadSavedFavorites(BuildContext context) async {
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+
+  // SharedPreferences only allow to save list of string so we will need to
+  // parse them to ints
+  List<String> ids = preferences.getStringList('favorites') ?? [];
+
+  Provider.of<FavoritesProvider>(context, listen: false)
+    ..clear()
+    ..setUp(ids.map(int.parse));
 }

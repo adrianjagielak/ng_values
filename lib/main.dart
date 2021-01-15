@@ -1,14 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'models/value.dart';
 import 'screens/home.dart';
 import 'services/providers/favorites_provider.dart';
 import 'services/providers/values_provider.dart';
-import 'services/values_api.dart';
 import 'theme.dart';
 
 void main() => runApp(MyApp());
@@ -31,8 +27,8 @@ class MyApp extends StatelessWidget {
         home: Builder(
           builder: (context) => FutureBuilder(
             future: Future.wait([
-              _loadValues(context),
-              _loadSavedFavorites(context),
+              loadValues(context),
+              loadSavedFavorites(context),
             ]),
             builder: (context, snapshot) {
               Widget child;
@@ -58,38 +54,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
-
-/// Initial loading of all values from REST api and saved in device storage
-Future _loadValues(BuildContext context) async {
-  // Load Seven Core Values From Api
-  List<Value> coreValues = await getCoreValues();
-
-  // Load saved custom values
-
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-
-  List<String> savedJsonValues =
-      preferences.getStringList('custom_values') ?? [];
-
-  Iterable<Value> savedCustomValues =
-      savedJsonValues.map((e) => Value.fromJson(jsonDecode(e)));
-
-  Provider.of<ValuesProvider>(context, listen: false)
-    ..clear()
-    ..setUp(coreValues)
-    ..setUp(savedCustomValues);
-}
-
-/// Initial loading of saved favorites from device storage
-Future _loadSavedFavorites(BuildContext context) async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-
-  // SharedPreferences only allow to save list of string so we will need to
-  // parse them to ints
-  List<String> ids = preferences.getStringList('favorites') ?? [];
-
-  Provider.of<FavoritesProvider>(context, listen: false)
-    ..clear()
-    ..setUp(ids.map(int.parse));
 }
