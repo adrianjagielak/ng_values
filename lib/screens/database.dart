@@ -24,7 +24,6 @@ class _DatabaseState extends State<Database> {
       body: ListView(
         physics: ClampingScrollPhysics(),
         controller: scrollController,
-        shrinkWrap: true,
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
