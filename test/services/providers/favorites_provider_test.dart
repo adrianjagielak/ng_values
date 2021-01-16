@@ -13,6 +13,7 @@ void main() {
         'favorites': ['0', '15', '42'],
       });
 
+      // Keep the key for getting the context later.
       GlobalKey key = GlobalKey();
 
       await tester.pumpWidget(MockupApp(

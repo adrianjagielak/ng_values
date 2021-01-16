@@ -22,6 +22,7 @@ void main() {
             customValues.map((e) => jsonEncode(e.toJson())).toList(),
       });
 
+      // Keep the key for getting the context later.
       GlobalKey key = GlobalKey();
 
       await tester.pumpWidget(MockupApp(
