@@ -28,7 +28,7 @@ void main() {
         child: Container(key: key),
       ));
 
-      // Verify that ValuesProvider favoritesIds is empty.
+      // Verify that ValuesProvider values is empty.
       expect(
         Provider.of<ValuesProvider>(
           key.currentContext,
