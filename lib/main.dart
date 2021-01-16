@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
 
               if (snapshot.connectionState == ConnectionState.waiting) {
                 child = Container(
-                  color: Colors.grey.shade100,
+                  color: Color(0xffAAAAAA),
                   child: Center(
                     child: CircularProgressIndicator(),
                   ),
