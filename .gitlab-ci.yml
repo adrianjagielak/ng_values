@@ -1,0 +1,67 @@
+stages:
+  - test
+  - build
+
+flutter test:
+  image: cirrusci/flutter
+  stage: test
+  needs: []
+  before_script:
+    - pub global activate junitreport
+    - export PATH="$PATH":"$HOME/.pub-cache/bin"
+  script:
+    - flutter test --no-sound-null-safety --machine | tojunit > report.xml
+  artifacts:
+    reports:
+      junit: report.xml
+
+dartanalyzer:
+  image: cirrusci/flutter:dev
+  stage: test
+  needs: []
+  before_script:
+    - pub global activate code_quality_report
+    - export PATH="$PATH":"$HOME/.pub-cache/bin"
+  script:
+    - flutter pub get
+    - dartanalyzer . --format=machine 2>&1 | tocodeclimate > code-quality-report.json
+  artifacts:
+    reports:
+      codequality: code-quality-report.json
+
+app dartdoc:
+  image: cirrusci/flutter
+  stage: test
+  needs: []
+  before_script:
+    - flutter pub global activate dartdoc
+  script:
+    - flutter pub global run dartdoc
+  artifacts:
+    paths:
+      - doc/
+
+build apk:
+  image: cirrusci/flutter
+  stage: build
+  needs: ["flutter test", "dartanalyzer"]
+  script:
+    - flutter pub get
+    - flutter build apk
+  artifacts:
+    paths:
+      - build/app/outputs/flutter-apk/app-release.apk
+
+build ios:
+  tags:
+    - osx
+  stage: build
+  needs: ["flutter test", "dartanalyzer"]
+  script:
+    - flutter pub get
+    - flutter build ios --no-codesign
+    - mv build/ios/iphoneos Payload
+    - zip -r Runner.ipa Payload
+  artifacts:
+    paths:
+      - Runner.ipa
