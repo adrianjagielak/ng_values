@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Adrian Jagielak',
         theme: lightTheme,
         darkTheme: darkTheme,
         // we are using Builder because futures loading data from api and
