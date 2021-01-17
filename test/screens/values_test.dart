@@ -139,7 +139,6 @@ void main() {
       await tester.tap(find.text('Add to favorites'));
       await tester.pump();
 
-
       // Verify that FavoritesProvider favoritesIds is not empty.
       expect(
         Provider.of<FavoritesProvider>(

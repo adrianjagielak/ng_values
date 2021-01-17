@@ -41,7 +41,6 @@ void main() {
       // Load saved custom values from device storage.
       await loadValues(key.currentContext, offline: true);
 
-
       // Verify that ValuesProvider values contains correct values.
       // It compares Iterable of json maps because comparing list of class
       // instances can be problematic
