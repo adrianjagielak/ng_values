@@ -3,7 +3,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import 'database.dart';
 import 'loved.dart';
-import 'settings.dart';
 import 'values.dart';
 
 /// The main application screen
@@ -19,7 +18,6 @@ class _HomeState extends State<Home> {
         0: Values(),
         1: Loved(),
         2: Database(),
-        3: Settings(),
       };
 
   List<BottomNavigationBarItem> get bottomNavigationBarItems => [
@@ -34,10 +32,6 @@ class _HomeState extends State<Home> {
         BottomNavigationBarItem(
           icon: Icon(MdiIcons.harddisk),
           label: 'Database',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
         ),
       ];
 
